@@ -1,47 +1,61 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+import os
 
-# Leer el archivo CSV
-car_data = pd.read_csv('C:/Users/Josué/Documents/Github/Proyecto-Josue/notebooks/vehicles_us.csv')
+# Verificar si el archivo existe
+if os.path.exists('vehicles_us.csv'):
+    car_data = pd.read_csv('vehicles_us.csv')
+else:
+    st.error("El archivo 'vehicles_us.csv' no se encuentra en el directorio del proyecto.")
 
+# Encabezado personalizado
+st.title("Proyecto Josué")
+st.subheader("Herramientas de desarrollo de software")
 
+# Configuración de colores
+color_histogram = 'red'
+color_scatter = 'blue'
 
-# Crear encabezado
-st.header('Análisis de vehículos de segunda mano')
+# Botones principales
+st.markdown("### Visualizaciones")
+col1, col2 = st.columns(2)
 
-# Botón para construir el histograma
-hist_button = st.button('Construir histograma')
+with col1:
+    hist_button = st.button('Construir histograma')
+with col2:
+    scatter_button = st.button('Construir gráfico de dispersión')
 
 if hist_button:
     st.write('Creando un histograma para la columna "odometer"')
-    # Crear histograma con Plotly Express
-    fig = px.histogram(car_data, x="odometer", title="Histograma de Odometer")
-    # Mostrar el gráfico interactivo
+    fig = px.histogram(car_data, x="odometer", title="Histograma de Odometer", color_discrete_sequence=[color_histogram])
     st.plotly_chart(fig, use_container_width=True)
-
-# Botón para construir el gráfico de dispersión
-scatter_button = st.button('Construir gráfico de dispersión')
 
 if scatter_button:
     st.write('Creando un gráfico de dispersión entre "price" y "odometer"')
-    # Crear gráfico de dispersión
-    fig_scatter = px.scatter(car_data, x="odometer", y="price", title="Gráfico de dispersión: Odometer vs Price")
-    # Mostrar el gráfico interactivo
+    fig_scatter = px.scatter(car_data, x="odometer", y="price", title="Gráfico de dispersión: Odometer vs Price", color_discrete_sequence=[color_scatter])
     st.plotly_chart(fig_scatter, use_container_width=True)
 
-# Desafío adicional: Casillas de verificación
+# Opciones en barra lateral
 st.sidebar.header('Opciones de visualización')
-
 build_histogram = st.sidebar.checkbox('Construir un histograma')
 build_scatter = st.sidebar.checkbox('Construir un gráfico de dispersión')
 
 if build_histogram:
-    st.write('Construir un histograma para la columna "odometer"')
-    fig_hist = px.histogram(car_data, x="odometer", title="Histograma de Odometer")
+    st.write('Histograma para la columna "odometer"')
+    fig_hist = px.histogram(car_data, x="odometer", title="Histograma de Odometer", color_discrete_sequence=[color_histogram])
     st.plotly_chart(fig_hist, use_container_width=True)
 
 if build_scatter:
-    st.write('Construir un gráfico de dispersión entre "price" y "odometer"')
-    fig_scatter = px.scatter(car_data, x="odometer", y="price", title="Gráfico de dispersión: Odometer vs Price")
+    st.write('Gráfico de dispersión entre "price" y "odometer"')
+    fig_scatter = px.scatter(car_data, x="odometer", y="price", title="Gráfico de dispersión: Odometer vs Price", color_discrete_sequence=[color_scatter])
     st.plotly_chart(fig_scatter, use_container_width=True)
+
+# Lista desplegable para gráfico de barras por marca
+st.markdown("### Análisis por marca")
+brands = car_data['model'].dropna().unique()
+selected_brand = st.selectbox("Selecciona una marca", sorted(brands))
+
+filtered_data = car_data[car_data['model'] == selected_brand]
+fig_bar = px.histogram(filtered_data, x="price", title=f"Distribución de precios - {selected_brand}", color_discrete_sequence=['darkblue'])
+st.plotly_chart(fig_bar, use_container_width=True)
