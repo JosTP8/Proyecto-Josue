@@ -1,29 +1,54 @@
-Proyecto Josué
-Aplicación Web Interactiva de Visualización de Datos de Vehículos Usados
-Desarrollada con Streamlit, Pandas y Plotly Express
+# 🚗 Proyecto Josué  
+**Aplicación Web Interactiva de Visualización de Datos de Vehículos Usados**  
+Desarrollada con **Streamlit**, **Pandas** y **Plotly Express**
 
-Se utiliza el archivo vehicles_us.csv, el cual contiene información relevante sobre vehículos en venta, incluyendo características como:
+---
 
-model (marca del auto)
-price (precio en USD)
-odometer (kilometraje registrado)
-condition (condición del vehículo)
-type (tipo de vehículo)
-transmission, fuel, paint_color, etc.
+## 📄 Descripción del Proyecto
 
-Funcionalidades de la aplicación
-La aplicación permite al usuario explorar visualmente los datos del dataset mediante:
+Esta aplicación web permite explorar de forma interactiva un conjunto de datos sobre vehículos usados, facilitando el análisis visual a través de gráficos generados dinámicamente. Está pensada como una herramienta de apoyo para la comprensión de patrones en el mercado de autos en venta.
 
-Botones interactivos
-Histograma: Muestra la distribución de precios por marca de vehículo.
+---
 
-Gráfico de dispersión: Compara el precio promedio de los vehículos por cada marca.
+## 📂 Fuente de Datos
 
-Análisis personalizado por marca
-El usuario puede seleccionar una marca desde un menú desplegable.
+Se utiliza el archivo `vehicles_us.csv`, que contiene información detallada sobre vehículos a la venta. Algunas columnas relevantes del dataset incluyen:
 
-Se genera un histograma con la distribución de precios para la marca seleccionada.
+- `model`: Marca del vehículo  
+- `price`: Precio en dólares (USD)  
+- `odometer`: Kilometraje registrado  
+- `condition`: Condición general del vehículo  
+- `type`, `transmission`, `fuel`, `paint_color`, entre otras  
 
-Enlace al proyecto en Render:
+---
 
-https://proyecto-josue.onrender.com
+## ⚙️ Funcionalidades de la Aplicación
+
+### 🔘 Botones Interactivos
+
+- **Histograma general**:  
+  Muestra la distribución de precios por marca de vehículo.
+
+- **Gráfico de dispersión**:  
+  Compara el precio promedio de los vehículos por cada marca.
+
+### 🔍 Análisis por Marca
+
+- El usuario puede seleccionar una **marca específica** desde un menú desplegable.
+- Se genera un **histograma personalizado** con la distribución de precios para la marca elegida.
+
+---
+
+## 🌐 Enlace a la Aplicación Web
+
+Haz clic aquí para abrir la app:  
+👉 [https://proyecto-josue.onrender.com](https://proyecto-josue.onrender.com)
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+
+- **Python 3.13**
+- **Streamlit**
+- **Pandas**
+- **Plotly Express**
