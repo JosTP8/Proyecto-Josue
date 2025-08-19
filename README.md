@@ -1,5 +1,4 @@
-# 🚗 Proyecto Josué  
-**Aplicación Web Interactiva de Visualización de Datos de Vehículos Usados**  
+# **Aplicación Web Interactiva de Visualización de Datos de Vehículos Usados**  
 Desarrollada con **Streamlit**, **Pandas** y **Plotly Express**
 
 ---
